@@ -7,7 +7,7 @@ import IndexPage from "./pages/IndexPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import {UserContextProvider} from "./UserContext";
-import CreatePost from "./pages/CreatePost";
+import CreatePost from "./pages/CreatePost"; 
 import PostPage from "./pages/PostPage";
 import EditPost from "./pages/EditPost";
 
