@@ -1,2 +1,2 @@
 # BlogSphere-MERN-Stack-Blog-Website
-This blog website
+This blog website is a 
