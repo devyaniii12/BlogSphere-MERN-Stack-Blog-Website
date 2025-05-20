@@ -1,2 +1,2 @@
 # BlogSphere-MERN-Stack-Blog-Website
-This website is made using the
+This website is made using the MERN stack.
