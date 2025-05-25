@@ -8,15 +8,26 @@ export default function CreatePost() {
   const [title,setTitle] = useState('');
   const [summary,setSummary] = useState('');
   const [content,setContent] = useState('');
-  const [files, setFiles] = useState('');
+  const [files, setFiles] = useState(null);
   const [redirect, setRedirect] = useState(false);
   async function createNewPost(ev) {
+    ev.preventDefault();
+
     const data = new FormData();
     data.set('title', title);
     data.set('summary', summary);
     data.set('content', content);
+    
+    //chatgpt added
+    if (files && files.length > 0) {
     data.set('file', files[0]);
-    ev.preventDefault();
+  } else {
+    alert("Please upload a file before submitting.");
+    return; // prevent the post if no file
+  }
+//chatgpt end
+
+
     const response = await fetch('http://localhost:4000/post', {
       method: 'POST',
       body: data,
