@@ -1,6 +1,7 @@
 import {useContext, useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
-import {formatISO9075} from "date-fns";
+import { format } from "date-fns";
+import { toZonedTime } from "date-fns-tz";
 import {UserContext} from "../UserContext";
 import {Link} from 'react-router-dom';
 
@@ -17,13 +18,19 @@ export default function PostPage() {
       });
   }, []);
 
-  if (!postInfo) return '';
+if (!postInfo) return <div>Loading...</div>;
+  const zonedDate = toZonedTime(new Date(postInfo.createdAt), Intl.DateTimeFormat().resolvedOptions().timeZone);
+const formattedDate = format(zonedDate, "d MMMM yyyy 'at' h:mm a");
+
 
   return (
     <div className="post-page">
       <h1>{postInfo.title}</h1>
-      <time>{formatISO9075(new Date(postInfo.createdAt))}</time>
-      <div className="author">by @{postInfo.author.username}</div>
+    <div className="meta">
+      <div className="author">
+  <strong>{postInfo.author.username}</strong> {formattedDate}
+</div>
+    </div>
       {userInfo.id === postInfo.author._id && (
         <div className="edit-row">
           <Link className="edit-btn" to={`/edit/${postInfo._id}`}>
